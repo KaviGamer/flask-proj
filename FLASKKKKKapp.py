@@ -2,17 +2,17 @@ from flask import Flask,jsonify, request
 
 app = Flask(__name__)
 
-tasks = [
+List = [
     {
         'id': 1,
-        'title': u'Buy groceries',
-        'description': u'Milk, Cheese, Pizza, Fruit, Tylenol', 
+        'Name': u'Raju',
+        'Contact': u'9987644456', 
         'done': False
     },
     {
         'id': 2,
-        'title': u'Learn Python',
-        'description': u'Need to find a good Python tutorial on the web', 
+        'Name': u'Rahul',
+        'Contact': u'9876543222', 
         'done': False
     }
 ]
@@ -29,23 +29,23 @@ def add_task():
             "message": "Please provide the data!"
         },400)
 
-    task = {
+    contact = {
         'id': tasks[-1]['id'] + 1,
-        'title': request.json['title'],
-        'description': request.json.get('description', ""),
+        'Name': request.json['Name'],
+        'Contact': request.json.get('Contact', ""),
         'done': False
     }
-    tasks.append(task)
+    List.append(contact)
     return jsonify({
         "status":"success",
-        "message": "Task added succesfully!"
+        "message": "Contact added succesfully!"
     })
     
 
 @app.route("/get-data")
 def get_task():
     return jsonify({
-        "data" : tasks
+        "data" : List
     }) 
 
 if (__name__ == "__main__"):
